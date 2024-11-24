@@ -66,6 +66,60 @@ $leaderboardResult = $conn -> query($leaderboardQuery);
     <title>Dashboard | Quiz Application</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+      /* Add your styles here */
+      body {
+        background: #dfe9f5;
+        font-family: "Poppins", sans-serif;
+      }
+      .container {
+        display: flex;
+      }
+      nav {
+        width: 280px;
+        background: #fff;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+      }
+      .main {
+        padding: 20px;
+        width: 100%;
+      }
+      .main-top {
+        background: #0427ee;
+        padding: 20px;
+        border-radius: 10px;
+        color: white;
+        margin-bottom: 20px;
+      }
+      .quiz-section, .leaderboard-section {
+        margin-bottom: 20px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table th, table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+      }
+      table th {
+        background-color: #f4f4f4;
+      }
+      button {
+        background: #0427ee;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
 </head>
 <body>
 <main class="main">
