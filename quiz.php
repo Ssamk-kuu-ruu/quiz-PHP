@@ -59,3 +59,72 @@ $leaderboardResult = $conn -> query($leaderboardQuery);
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+    <title>Dashboard | Quiz Application</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+<body>
+<main class="main">
+        <div class="main-top">
+          <h1>Welcome to the Quiz Dashboard</h1>
+          <p>Participate in the quiz and see your scores in the leaderboard!</p>
+        </div>
+
+        <section class="quiz-section">
+          <h2>Quiz</h2>
+          <form method="post">
+            <label for="name">Enter Your Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <?php foreach ($questions as $index => $question): ?>
+              <fieldset>
+                <legend><?php echo $question['question']; ?></legend>
+                <?php foreach ($question['options'] as $optionIndex => $option): ?>
+                  <label>
+                    <input type="radio" name="question<?php echo $index; ?>" value="<?php echo $optionIndex; ?>">
+                    <?php echo $option; ?>
+                  </label><br>
+                <?php endforeach; ?>
+              </fieldset>
+            <?php endforeach; ?>
+            <button type="submit">Submit Quiz</button>
+          </form>
+        </section>
+
+        <section class="leaderboard-section">
+          <h2>Leaderboard</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+                <th>Total Questions</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php if ($leaderboardResult && $leaderboardResult->num_rows > 0): ?>
+                <?php $rank = 1; ?>
+                <?php while ($row = $leaderboardResult->fetch_assoc()): ?>
+                  <tr>
+                    <td><?php echo $rank++; ?></td>
+                    <td><?php echo htmlspecialchars($row['name']); ?></td>
+                    <td><?php echo $row['score']; ?></td>
+                    <td><?php echo $row['total_questions']; ?></td>
+                    <td><?php echo date('Y-m-d H:i:s', strtotime($row['timestamp'])); ?></td>
+                  </tr>
+                <?php endwhile; ?>
+              <?php else: ?>
+                <tr><td colspan="5">No scores available yet.</td></tr>
+              <?php endif; ?>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+</body>
+</html>
