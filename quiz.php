@@ -53,3 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $stmt->close();
 }
+
+$leaderboardQuery = "SELECT name, score, total_questions, timestamp FROM results ORDER BY score DESC, timestamp ASC LIMIT 10";
+$leaderboardResult = $conn -> query($leaderboardQuery);
+
+?>
+
